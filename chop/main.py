@@ -45,11 +45,33 @@ def chop_recursive(search_term: int, lst: list):
     return pos
 
 
-# chop = chop_recursive
-def chop(search_term: int, lst: list):
-    chop_instance = Chop(search_term, lst)
-    return chop_instance.slice(0, len(lst))
+def chop_iterative(search_term: int, lst: list):
+    """Iterative approach"""
+    m = 0
+    n = len(lst)
+    if n == 1:
+        return 0 if search_term == lst[m] else -1
+    else:
+        while m < n:
+            k = (m+n)//2
+            if search_term == lst[k]:
+                return k
+            elif search_term < lst[k]:
+                n = k
+            else:
+                m = k+1
+        try:
+            endpoint = lst[m]
+        except IndexError:
+            return -1
+        return m if search_term == endpoint else -1
 
+
+# chop = chop_recursive
+# def chop(search_term: int, lst: list):
+#     chop_instance = Chop(search_term, lst)
+#     return chop_instance.slice(0, len(lst))
+chop = chop_iterative
 
 if __name__ == '__main__':
     print('PyCharm')
