@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
-# [ ] traditional iterative approach
+# [x] traditional iterative approach
 # [x] one might be recursive,
-# [ ] one might use a functional style passing array slices
+# [x] one might use a functional style passing array slices
 
 class Chop:
     def __init__(self, search_term: int, lst: list):
