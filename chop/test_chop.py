@@ -1,5 +1,5 @@
 import unittest
-from main import chop
+from chop import chop
 
 
 class MyTestCase(unittest.TestCase):
