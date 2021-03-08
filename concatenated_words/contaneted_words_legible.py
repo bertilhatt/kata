@@ -27,7 +27,7 @@ def match_two_alphabetised_dict(dict_1: dict, dict_2: dict):
     """
     if dict_1 is None or dict_2 is None:
         pass
-    elif dict_1 == {} and dict_2 == {}:
+    elif dict_1 == {"#": {}} and dict_2 == {"#": {}}:
         return ['']
     else:
         output = []
@@ -68,7 +68,9 @@ def match_two_dict(dict_1: dict, dict_2: dict):
     else:
         output = {}
         for letter, branch in dict_1.items():
-            if letter in dict_2.keys():
+            if letter == '#':
+                output.update({'': dict_2})
+            elif letter in dict_2.keys():
                 match = match_two_dict(branch, dict_2[letter])
                 if match is None:
                     pass
@@ -82,7 +84,7 @@ def find_concatenated_words_fast(short_dict: dict, long_dict: dict):
     output = []
     for k, v in leftover.items():
         match = match_two_dict(v, short_dict)
-        exact_matches = [(k, kk) for kk, vv in match.items() if vv == {}]
+        exact_matches = [(k, kk) for kk, vv in match.items() if vv == {'#': {}}]
         if len(exact_matches) > 0:
             output.extend(exact_matches)
     return output
@@ -99,22 +101,22 @@ def process_dictionaries(long_dict=None, short_dict=None):
 
 
 if __name__ == '__main__':
-    short_d = ['A', 'baris', 'a', 'based', 'Ab', 'eria']
-    long_d = ['Abaris', 'abased', 'Aberia']
-    long_dict, short_dict = process_dictionaries(long_d, short_d)
+    # short_d = ['A', 'baris', 'a', 'based', 'Ab', 'eria']
+    # long_d = ['Abaris', 'abased', 'Aberia']
+    # long_dict, short_dict = process_dictionaries(long_d, short_d)
 
-    # long_dict, short_dict = process_dictionaries()
-    #
-    # start = time.perf_counter()
+    long_dict, short_dict = process_dictionaries()
+
+    start = time.perf_counter()
     output_fast = find_concatenated_words_fast(short_dict, long_dict)
-    # stop = time.perf_counter()
-    # print(stop - start)
-    # print(len(output_fast))
+    stop = time.perf_counter()
+    print(stop - start)
+    print(len(output_fast))
     print(output_fast)
-    #
-    # start = time.perf_counter()
-    # output_legible = find_concatenated_words_legible(short_dict, long_dict)
-    # stop = time.perf_counter()
-    # print(stop - start)
-    # print(len(output_legible))
-    # print(output_legible)
+
+    start = time.perf_counter()
+    output_legible = find_concatenated_words_legible(short_dict, long_dict)
+    stop = time.perf_counter()
+    print(stop - start)
+    print(len(output_legible))
+    print(output_legible)

@@ -14,7 +14,7 @@ def alphabetise_dictionary(word_dict=None):
     output_dict = {}
     for _word_ in word_dict:
         _dict_ = output_dict
-        for letter in _word_:
+        for letter in _word_+'#':
             if letter not in _dict_.keys():
                 _dict_[letter] = {}
             else:
