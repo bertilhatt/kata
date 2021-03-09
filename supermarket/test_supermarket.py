@@ -1,9 +1,10 @@
 import unittest
-from supermarket import CheckOut, pricing_rules
+# from supermarket_price_in_checkout import CheckOut, pricing_rules
+from supermarket_price_in_items import CheckOut, pricing_rules
 
 
 def price(goods):
-    co = CheckOut(pricing_rules)
+    co = CheckOut()
     for item in goods:
         co.scan(item)
     return co.total
@@ -11,7 +12,7 @@ def price(goods):
 
 class TestPrice(unittest.TestCase):
     def test_incremental(self):
-        co = CheckOut(pricing_rules)
+        co = CheckOut()
         self.assertEqual(0, co.total)
         co.scan("A")
         self.assertEqual(50, co.total)
