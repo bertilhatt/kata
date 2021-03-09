@@ -41,7 +41,8 @@ class CheckOut:
             item = Item(name)
             self.items[name] += 1
             item_unbundled_count = self.items[name] - self.bundles[name]
-
+            # TODO: What is there are bundles of 1, 3, 5? We’d miss the 5
+            # TODO: What is there are bundles of different types of items
             if item_unbundled_count in item.special_price.keys():
                 bundle_count = item_unbundled_count
                 self.bundles[name] += bundle_count
