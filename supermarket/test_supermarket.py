@@ -1,6 +1,6 @@
 import unittest
-# from supermarket_price_in_checkout import CheckOut, pricing_rules
-from supermarket_price_in_items import CheckOut, pricing_rules
+from supermarket_price_in_checkout import CheckOut
+# from supermarket_price_in_items import CheckOut
 
 
 def price(goods):
@@ -44,4 +44,5 @@ class TestPrice(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main()
+    for source in ['checkout', 'items']:
+        unittest.main()
